@@ -9,7 +9,7 @@ const timezone = moment.tz.guess();
 const args = minimist(process.argv.slice(2));
 
 if (args.h){
-    console.log(`Usage: node cli.js [options] -[n|s] LATITUDE -[e|w] LONGITUDE -z TIME_ZONE
+    console.log(`Usage: galosh.js [options] -[n|s] LATITUDE -[e|w] LONGITUDE -z TIME_ZONE
         -h            Show this help message and exit.
         -n, -s        Latitude: N positive; S negative.
         -e, -w        Longitude: E positive; W negative.
