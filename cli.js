@@ -34,7 +34,7 @@ else if(args.s) {
     latitude = -args.s;
 }
 else {
-    console.log("Please input a latitude argument. Either north (n) or south (s).");
+    console.log("Latitude must be in range");
     process.exit(0);
 }
 
