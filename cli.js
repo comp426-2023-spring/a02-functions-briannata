@@ -6,7 +6,11 @@ import moment from "moment-timezone";
 
 const timezone = moment.tz.guess();
 
+// get command line arguments
+
 const args = minimist(process.argv.slice(2));
+
+// if -h, print help message
 
 if (args.h){
     console.log(`Usage: galosh.js [options] -[n|s] LATITUDE -[e|w] LONGITUDE -z TIME_ZONE
@@ -19,6 +23,8 @@ if (args.h){
     `);
     process.exit(0);
 }
+
+// calculate latitude and longitude appropriately
 
 let latitude;
 let longitude;
@@ -53,13 +59,21 @@ else {
     process.exit(0);
 }
 
+// parse url
+
 const url = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude + "&timezone=" + timezone + "&daily=precipitation_hours";
+
+// data response from fetch
 
 const response = await fetch(url);
 
 const data = await response.json();
 
-const days = args.d 
+// see which days the user wants to see data for (default is tomorrow)
+
+const days = args.d
+
+// parse string message from data (if it's raining or sunny)
 
 let string;
 
@@ -77,6 +91,9 @@ if (days == 0) {
 } else {
     string += "tomorrow.";
 }
+
+// if -j, print json data object
+// else, print the parsed string
 
 if(args.j) {
     console.log(data);
